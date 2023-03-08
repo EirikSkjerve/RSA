@@ -10,3 +10,10 @@ def exponentiate_modulate(base, power, mod):
         temp = (temp*base)%mod
 
     return temp
+
+# ascii
+def convert_ascii_to_integers(input, block_size=10):
+    output = [ord(i) for i in input]
+    return output
+
+print(convert_ascii_to_integers("Hei", block_size=10))
