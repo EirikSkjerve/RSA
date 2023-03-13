@@ -1,24 +1,28 @@
 from utils import *
 from generate_keys import generate_keys
 
-
 def encrypt(plaintext, pub_key):
     n, e = pub_key
-    ciphertext = exponentiate_modulate(plaintext,e,n)
+    return pow(plaintext, e, n)
 
-    return ciphertext
 
-def decrypt(ciphertext, priv_key, n):
-    plaintext = exponentiate_modulate(ciphertext, priv_key, n)
-
-    return plaintext
+def decrypt(ciphertext, priv_key):
+    n, d = priv_key
+    return pow(ciphertext, d, n)
 
 def main():
-    
+    import time
+    start = time.time()
     public_key, private_key = generate_keys()
-    n, e = public_key
-    print(f"Public key {public_key}")
-    print(f"Private key {private_key}")
+
+    ciphertext = encrypt(333333333333333333333333333333333333333333333333333333333333333333333333333, public_key)
+    decrypted_ciphertext = decrypt(ciphertext, private_key)
+    print(f"Ciphertext: {ciphertext}")
+    print(f"Decrypted plaintext: {decrypted_ciphertext}")
+    end = time.time()
+    print(f"Time elapsed generating public and private key pair with primes size 512 bits, and encrypting data: {end-start}")    
+
+
     
 
 if __name__ == "__main__":
