@@ -21,6 +21,13 @@ def generate_keys()->tuple:
 
 def find_invertible_number(m)->int:
     #print("Finding an invertible number...")
+    rnd = 1
+    while True:
+        random.seed(rnd)
+        rnd = random.randrange(3, 1000000)
+        if math.gcd(rnd,m) == 1:
+            return rnd
+    
     for p in range(3, m):
 
         if math.gcd(p,m) == 1:
@@ -28,7 +35,6 @@ def find_invertible_number(m)->int:
         
 def invert_number(e, m)->int:
     #print("Finding inverse of e...")
-
     return pow(e, -1, m)
 
 
